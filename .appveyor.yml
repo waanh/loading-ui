@@ -1,0 +1,13 @@
+image: Visual Studio 2019
+install:
+  - npm install
+build_script:
+  - npm run build
+artifacts:
+  - path: dist
+deploy:
+  provider: GitHubPages
+  auth_token:
+    secure: YOUR_GITHUB_TOKEN
+  branch: gh-pages
+  folder: dist
