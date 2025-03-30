@@ -17,8 +17,7 @@ build_script:
   - npm run build    
 
 deploy_script: 
-  - git config --global credential.helper store
-  - git config --global user.name AppVeyor
-  - git config --global user.email ci@appveyor.com
-  - echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > "$HOME/.git-credentials"
-  - npx push-dir --dir=dist --branch=gh-pages --force --verbose
+  - git config --global user.email "ci@appveyor.com"
+  - git config --global user.name "AppVeyor"
+  - git remote set-url origin https://x-access-token:%GITHUB_TOKEN%@github.com/waanh/loading-ui.git
+  - npx push-dir --dir=dist --branch=gh-pages --remote=https://x-access-token:%GITHUB_TOKEN%@github.com/waanh/loading-ui.git --force --verbose

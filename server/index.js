@@ -15,6 +15,7 @@ router.get("/api/data", async (ctx) => {
 
 app.use(router.routes()).use(router.allowedMethods());
 
+const PORT = process.env.PORT || 3000;
 app.listen(3000, () => {
   console.log("Сервер запущен на http://localhost:3000");
 });
