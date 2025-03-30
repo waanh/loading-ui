@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("loading-screen"),t=document.getElementById("content");setTimeout((()=>{e.classList.add("hidden"),t.classList.remove("hidden")}),3e3)}));
