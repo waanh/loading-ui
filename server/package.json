@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "webpack --mode production"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,8 +14,5 @@
     "koa-router": "^13.0.1",
     "koa-slow": "^2.1.0",
     "koa-static": "^5.0.0"
-  },
-  "devDependencies": {
-    "webpack-cli": "^6.0.1"
   }
 }
