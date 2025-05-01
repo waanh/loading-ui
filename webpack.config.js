@@ -62,6 +62,6 @@ module.exports = {
     hot: true,
     open: true,
     compress: true,
-    static: false, 
+    static: path.resolve(__dirname, 'dist'), 
   },  
 };
