@@ -5,11 +5,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: process.env.NODE_ENV || 'development',
   entry: "./src/index.js",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: './',
   },
   module: {
     rules: [
@@ -34,16 +35,33 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      filename: "index.html",
     }),
     new MiniCssExtractPlugin(),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
+      runtimeCaching: [
+        {
+          urlPattern: /\.(?:js|css|html|png|svg)$/,
+          handler: 'CacheFirst',
+        },
+        {
+          urlPattern: /\/api\/data/,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api-cache',
+            networkTimeoutSeconds: 3,
+          },
+        },
+      ],
     }),
   ],
   devServer: {
-    static: path.join(__dirname, "dist"),
+    port: 3000,
+    hot: true,
+    open: true,
     compress: true,
-    port: 9000,
-  },
+    static: false, 
+  },  
 };
